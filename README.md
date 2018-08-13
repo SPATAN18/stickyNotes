@@ -1,8 +1,8 @@
 ## Getting Started
 
-In the project directory, you can run:
-
 ### Clone the repo
+
+change directory to the project folder for subsequent steps.
 
 ### Run `npm install`
 
