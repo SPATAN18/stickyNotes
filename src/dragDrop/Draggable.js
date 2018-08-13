@@ -38,14 +38,21 @@ class Draggable extends Component {
     ev.dataTransfer.effectAllowed = "move";
     ev.dataTransfer.clearData();
     ev.dataTransfer.setData("text/plain", this.props.id);
-    this.setState({ zIndex: 12 });
+    this.moveToFront();
   };
 
   // Dragend Handler
   handleDragEnd = ev => {
-    this.setState({ zIndex: 2 });
+    this.resetZindex();
   };
 
+  moveToFront = () => {
+    this.setState({ zIndex: 5 });
+  };
+
+  resetZindex = () => {
+    this.setState({ zIndex: 2 });
+  };
   render() {
     const { forwardRef, id } = this.props;
     const { zIndex, posX, posY } = this.state;
@@ -61,6 +68,8 @@ class Draggable extends Component {
         }}
         ref={forwardRef}
         id={id}
+        onMouseOver={this.moveToFront}
+        onMouseLeave={this.resetZindex}
       >
         {this.props.children}
       </div>
