@@ -49,14 +49,17 @@ class App extends Component {
   /**
    * Adding Note to Note list
    */
-
+  // set updated notes object as notes
   onAddNote = (title, content) => {
-    const notes = this.state.notes; // get notes object from state
-    notes[title] = { content: content, posX: null, posY: null }; // create new note using title as key
-    this.setState(
-      { notes }, // set updated notes object as notes
-      localStorage.setItem(appNoteKey, JSON.stringify(notes)) // update notes in local storage
-    );
+    const { notes } = this.state;
+    this.setState(prevState => ({
+      ...prevState,
+      notes: {
+        ...prevState.notes,
+        [title]: { content: content, posX: null, posY: null }
+      }
+    }));
+    localStorage.setItem(appNoteKey, JSON.stringify(notes)); // update notes in local storage
   };
 
   /**
@@ -66,10 +69,14 @@ class App extends Component {
    * @param {Number} posY -  note position from top
    */
   updateNote = (key, posX, posY) => {
-    const notes = this.state.notes;
-    notes[key] = { ...notes[key], posX: posX, posY: posY };
-    this.setState({ notes });
-    localStorage.setItem(appNoteKey, JSON.stringify(notes));
+    this.setState(prevState => ({
+      ...prevState,
+      notes: {
+        ...prevState.notes,
+        [key]: { ...prevState.notes[key], posX: posX, posY: posY }
+      }
+    }));
+    localStorage.setItem(appNoteKey, JSON.stringify(this.state.notes));
   };
 
   /**
