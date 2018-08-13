@@ -1,0 +1,24 @@
+.App {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(#141e30, #243b55);
+}
+
+.Notesbg {
+  height: 90%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(#403b4a, #e7e9bb);
+  z-index: 2;
+}
+.createButton {
+  position: absolute;
+  background-color: #5cb85c;
+  z-index: 5;
+  margin-top: 4px;
+  margin-left: 16px;
+  height: 60px;
+  display: block;
+}
